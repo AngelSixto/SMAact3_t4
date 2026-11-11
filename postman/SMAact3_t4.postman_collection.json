@@ -1,0 +1,69 @@
+{
+  "info": {
+    "name": "SMAact3_t4 - CRUD Alumnos y Carreras",
+    "description": "Coleccion para probar la API REST del proyecto SMAact3_t4 (Angel Sixto Morales). Cambia la variable baseUrl para probar en local o en el VPS.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" }
+  ],
+  "item": [
+    {
+      "name": "Carreras",
+      "item": [
+        {
+          "name": "Listar carreras",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/carreras" }
+        },
+        {
+          "name": "Crear carrera",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"clave\": \"IELEC\",\n  \"nombre\": \"Ingenieria Electrica\"\n}" },
+            "url": "{{baseUrl}}/api/carreras"
+          }
+        },
+        {
+          "name": "Alumnos de una carrera (relacion)",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/carreras/1/alumnos" }
+        }
+      ]
+    },
+    {
+      "name": "Alumnos (CRUD)",
+      "item": [
+        {
+          "name": "1. CREAR alumno",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"numeroControl\": \"24160404\",\n  \"nombre\": \"Carlos\",\n  \"apellidos\": \"Hernandez Diaz\",\n  \"email\": \"carlos.hernandez@example.com\",\n  \"semestre\": 1,\n  \"carrera\": { \"id\": 1 }\n}" },
+            "url": "{{baseUrl}}/api/alumnos"
+          }
+        },
+        {
+          "name": "2. LEER todos los alumnos",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/alumnos" }
+        },
+        {
+          "name": "3. LEER alumno por id",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/alumnos/1" }
+        },
+        {
+          "name": "4. ACTUALIZAR alumno",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"numeroControl\": \"24160404\",\n  \"nombre\": \"Carlos\",\n  \"apellidos\": \"Hernandez Diaz\",\n  \"email\": \"carlos.hd@example.com\",\n  \"semestre\": 2,\n  \"carrera\": { \"id\": 2 }\n}" },
+            "url": "{{baseUrl}}/api/alumnos/5"
+          }
+        },
+        {
+          "name": "5. ELIMINAR alumno",
+          "request": { "method": "DELETE", "url": "{{baseUrl}}/api/alumnos/5" }
+        }
+      ]
+    }
+  ]
+}
